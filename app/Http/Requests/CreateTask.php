@@ -29,12 +29,12 @@ class CreateTask extends FormRequest
             'title' => 'required|max:100',
             'due_date' => 'required|date|after_or_equal:today',
             // date 日付の形式
-            // after_or_equal:todya 今日を含む特定の日付と同じまたはそれ以降の日付
+            // after_or_equal:today 今日を含む特定の日付と同じまたはそれ以降の日付
         ];
     }
 
     public function attributes()
-    // バリデーションで表示されるname属性を以下に変更する
+    // バリデーションで表示される、name属性を以下に変更する
     {
         return [
             'title' => 'タイトル',

@@ -27,14 +27,17 @@
                 <label for="title">タイトル</label>
                 <input type="text" class="form-control" name="title" id="title"
                        value="{{ old('title') ?? $task->title }}" />
+                       {{-- null合体演算子 ?? データがもともとある場合は、右を表示する、左は、入力値 old関数 Laravel組み込み $taskは、controllerから --}}
               </div>
               <div class="form-group">
                 <label for="status">状態</label>
                 <select name="status" id="status" class="form-control">
                   @foreach(\App\Task::STATUS as $key => $val)
+                  {{-- keyとvalueを同時に取得する書き方 --}}
                     <option
                         value="{{ $key }}"
                         {{ $key == old('status', $task->status) ? 'selected' : '' }}
+                        {{-- old 第一引数:フォーム入力値、第二引数DB登録データ(デフォルト) --}}
                     >
                       {{ $val['label'] }}
                     </option>

@@ -13,6 +13,8 @@ class FoldersTableSeeder extends Seeder
      */
     public function run()
     {
+        $user = DB::table('users')->first(); // ★
+
         $titles = ['プライベート', '仕事', '旅行'];
 
         foreach ($titles as $title) {
@@ -20,6 +22,7 @@ class FoldersTableSeeder extends Seeder
                 'title' => $title,
                 // Carbon 日付に関するクラス
                 // ::staticクラス インスタンス化しなくても使える処理
+                'user_id' => $user->id, // ★
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
             ]);
