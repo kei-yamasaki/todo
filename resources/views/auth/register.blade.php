@@ -28,6 +28,7 @@
                 <label for="password">パスワード</label>
                 <input type="password" class="form-control" id="password" name="password">
               </div>
+              {{-- パスワード一致に、confirmedルールを使用して、上記、"password" と 下記、"password_confirmation" を比較する  --}}
               <div class="form-group">
                 <label for="password-confirm">パスワード（確認）</label>
                 <input type="password" class="form-control" id="password-confirm" name="password_confirmation">

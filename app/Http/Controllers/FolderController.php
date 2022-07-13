@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Folder;
 use App\Http\Requests\CreateFolder;
 use Illuminate\Http\Request;
+// ★ Authクラスをインポートする
+use Illuminate\Support\Facades\Auth;
 
 class FolderController extends Controller
 {
@@ -32,7 +34,8 @@ class FolderController extends Controller
         $folder->title = $request->title;
         // $request->titleは、view側のform送信のname属性
         // インスタンスの状態をデータベースに書き込む
-        $folder->save();
+        // ★ ユーザーに紐づけて保存
+        Auth::user()->folders()->save($folder);
 
         // 上記で作成した$folderのidをrouteのidに入れる
         return redirect()->route('tasks.index', [

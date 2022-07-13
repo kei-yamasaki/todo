@@ -13,6 +13,8 @@ class AddUserIdToFolders extends Migration
      */
     public function up()
     {
+          // $php artisan make:migration add_user_id_to_folders --table=folders
+        // --は、オプションで、foldersテーブルに関するmigrationファイルを作成する
         Schema::table('folders', function (Blueprint $table) {
             $table->integer('user_id')->unsigned();
 

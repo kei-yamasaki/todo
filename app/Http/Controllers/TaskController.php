@@ -6,6 +6,8 @@ use App\Folder;
 use App\Task;
 use App\Http\Requests\EditTask;
 use App\Http\Requests\CreateTask;
+// ★ Authクラスをインポートする
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
 class TaskController extends Controller
@@ -13,13 +15,16 @@ class TaskController extends Controller
     public function index(int $id)
     // web.php ルーティングからurlのidの部分(引数)を渡す
     {
+        // ★ ユーザーのフォルダを取得する
+        $folders = Auth::user()->folders()->get();
         // すべてのフォルダを取得する
-        $folders = Folder::all();
+        // $folders = Folder::all();
 
         // 選ばれたフォルダを取得する
         $current_folder = Folder::find($id);
 
         // 選ばれたフォルダに紐づくタスクを取得する
+        // $tasks = Task::where('folder_id', $current_folder->id)->get();
         $tasks = $current_folder->tasks()->get();
         // 下記を上記に書き換え、モデルFolderのhasmanyメソッドの関係性を定義済
         // $tasks = Task::where('folder_id', $current_folder->id)->get();
