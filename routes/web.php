@@ -17,12 +17,14 @@
 
 
 Route::group(['middleware' => 'auth'], function() {
+  // ログインしているユーザーしか見れない
   Route::get('/', 'HomeController@index')->name('home');
 
   Route::get('/folders/create', 'FolderController@showCreateForm')->name('folders.create');
   Route::post('/folders/create', 'FolderController@create');
 
   Route::group(['middlware' => 'can:view,folder'], function() {
+    // ポリシーで設定している権限がないと見れない、403ページへリダイレクト　can->Http/Kernel.php　view,folder 引数左は、ポリシーの種類、右は、URLに紐づく変数 'view'の中身がtrue or falseとなる
     Route::get('/folders/{folder}/tasks', 'TaskController@index')->name('tasks.index');
 
     Route::get('/folders/{folder}/tasks/create', 'TaskController@showCreateForm')->name('tasks.create');

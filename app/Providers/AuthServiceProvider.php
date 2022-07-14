@@ -16,6 +16,7 @@ class AuthServiceProvider extends ServiceProvider
      */
     protected $policies = [
         Folder::class => FolderPolicy::class,
+        // Folderモデルに対する処理は、FolderPolicyを適用する
     ];
 
     /**
