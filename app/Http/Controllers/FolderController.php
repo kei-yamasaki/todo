@@ -39,7 +39,7 @@ class FolderController extends Controller
 
         // 上記で作成した$folderのidをrouteのidに入れる
         return redirect()->route('tasks.index', [
-            'id' => $folder->id,
+            'folder' => $folder->id,
         ]);
     }
 }

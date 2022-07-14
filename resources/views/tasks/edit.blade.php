@@ -19,8 +19,8 @@
               </div>
             @endif
             <form
-                action="{{ route('tasks.edit', ['id' => $task->folder_id, 'task_id' => $task->id]) }}"
-                {{-- route関数 ルーティングにurlに埋め込む値を渡してあげる。そして、コントローラー側でこの引数を利用する --}}
+                action="{{ route('tasks.edit', ['folder' => $task->folder_id, 'task' => $task->id]) }}"
+                {{-- route関数 ルーティングのurlに埋め込む値を渡してあげる。そして、コントローラー側でこの引数を利用する --}}
                 method="POST"
             >
               @csrf
