@@ -7,11 +7,22 @@
         <nav class="panel panel-default">
           <div class="panel-heading">パスワード再発行</div>
           <div class="panel-body">
+            <!-- パスワードリセットに必要な追記 -->
+            <!-- メール送信完了メッセージを表示 -->
             @if (session('status'))
               <div class="alert alert-success" role="alert">
                 {{ session('status') }}
               </div>
             @endif
+            {{-- バリデーションエラーの表示 --}}
+            @if ($errors->any())
+              <div class="alert danger">
+                @foreach($errors->all() as $message)
+                  <p>{{  $message }}</p>
+                @endforeach
+              </div>
+            @endif
+            {{-- --------------- --}}
             <form action="{{ route('password.email') }}" method="POST">
               @csrf
               <div class="form-group">
